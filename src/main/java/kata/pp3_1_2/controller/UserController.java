@@ -30,16 +30,12 @@ public class UserController {
 
     @PostMapping(value = "/saveUser")
     public String saveUser(@ModelAttribute("newUser") User user) {
-        if (user.getID() == 0) {
-            userService.saveUser(user);
-        } else {
-            userService.updateUser(user);
-        }
+        userService.saveUser(user);
         return "redirect:/";
     }
 
     @GetMapping(value = "/updateUser")
-    public String updateEmployee(@RequestParam("ID") long ID, Model model) {
+    public String updateUser(@RequestParam("ID") long ID, Model model) {
         model.addAttribute("newUser", userService.getUserById(ID));
         return "user-info";
     }
